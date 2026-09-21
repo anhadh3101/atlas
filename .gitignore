@@ -1,2 +1,28 @@
-node_modules
-/dist/
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Accidental compile output in src/ (source is TypeScript only)
+src/**/*.js
+src/**/*.js.map
+
+# Local Claude Code setup (canonical command lives in commands/)
+.claude/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/

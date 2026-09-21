@@ -1,7 +1,7 @@
 import { createTypeScriptDependencyGraph } from '../map/typescript/createTypeScriptGraph.js'
 import type { TypeScriptDependencyGraph } from '../map/typescript/types.js';
 
-import { string, z } from 'zod';
+import { z } from 'zod';
 import path from 'node:path';
 
 export interface AtlasToolResult {
@@ -44,6 +44,7 @@ export async function executeAtlas(rawInput: unknown) {
         if (input.language === "typescript") {
             const graph = createTypeScriptDependencyGraph({
                 projectRoot,
+                ...(input.tsconfigPath ? { tsconfigPath: input.tsconfigPath } : {}),
             });
 
             return {

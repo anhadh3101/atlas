@@ -3,20 +3,28 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
+  "imports": {
+    "#atlas/*": "./dist/*"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
-    "test": "node --test dist/**/*.test.js"
+    "build": "tsc && tsc -p tsconfig.test.json",
+    "test": "node --test dist/**/*.test.js",
+    "start": "node dist/mcp/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
     "typescript": "^5.8.0",
     "zod": "^4.6.5"
   },
   "devDependencies": {
     "@types/node": "^26.5.0"
+  },
+  "bin": {
+    "atlas-mcp": "dist/mcp/server.js"
   }
 }

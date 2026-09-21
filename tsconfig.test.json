@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./tests",
+    "outDir": "./dist/tests",
+    "baseUrl": ".",
+    "paths": {
+      "#atlas/*": ["./dist/*"]
+    },
+    "declaration": false,
+    "declarationMap": false
+  },
+  "include": ["tests/**/*.ts"]
+}
