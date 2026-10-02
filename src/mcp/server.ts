@@ -25,20 +25,22 @@ server.registerTool(
 server.registerPrompt(
   "atlas",
   {
-    description: "Build a dependency graph of the current project with the atlas tool.",
+    description: "List changed files in a pull request using the atlas tool.",
     argsSchema: {
-      rootPath: z.string().optional().describe("Project root; defaults to the current working directory"),
+      pullRequest: z.coerce
+        .number()
+        .int()
+        .positive()
+        .describe("Pull request number"),
     },
   },
-  ({ rootPath }) => ({
+  ({ pullRequest }) => ({
     messages: [
       {
         role: "user" as const,
         content: {
           type: "text" as const,
-          text: `Call the atlas tool to create a dependency graph for ${
-            rootPath ? `the project at ${rootPath}` : "the current working directory (use its absolute path as rootPath)"
-          }, then summarize the result.`,
+          text: `Call the atlas tool with pullRequest ${pullRequest} to list the files changed in that PR, then summarize the result.`,
         },
       },
     ],

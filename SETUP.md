@@ -6,6 +6,7 @@ Get the Atlas MCP server running locally and install the `/atlas` slash command 
 
 - Node.js 18+
 - Claude Code CLI (`claude`)
+- GitHub CLI (`gh`) — required for the `/atlas` PR review workflow
 
 ## 1. Build Atlas
 
@@ -74,13 +75,12 @@ Inside a Claude Code session:
 /atlas
 ```
 
-or with an explicit path:
+Claude should discover the GitHub repository from the current workspace, list
+its open PRs, and ask you to select one. It will then fetch the selected PR with
+`gh`, clone it into an isolated checkout, and return a structured code review.
 
-```text
-/atlas /path/to/some/project
-```
-
-Claude should call the `atlas` MCP tool and return node/edge/unresolved counts.
+It may also ask for permission to clone the repository or run install/test
+scripts before doing so.
 
 ## Notes
 
