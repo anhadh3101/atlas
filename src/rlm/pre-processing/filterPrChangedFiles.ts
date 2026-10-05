@@ -9,6 +9,8 @@ const GRAPH_SOURCE_EXTENSIONS = new Set([
   ".jsx",
   ".mjs",
   ".cjs",
+  ".py",
+  ".pyi"
 ]);
 
 const EXCLUDED_PATH_SEGMENTS = new Set([
@@ -19,6 +21,10 @@ const EXCLUDED_PATH_SEGMENTS = new Set([
   "coverage",
   ".next",
   "docs",
+  "__pycache__",
+  ".venv",
+  "venv",
+  "site-packages",
 ]);
 
 const EXCLUDED_BASENAMES = new Set([

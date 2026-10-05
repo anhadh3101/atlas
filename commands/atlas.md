@@ -1,5 +1,6 @@
 ---
 description: Review a GitHub pull request using Atlas
+allowed-tools: mcp__atlas__atlas
 ---
 
 Act like an engineer conducting a terminal-based code review.
@@ -63,15 +64,16 @@ Fetch metadata before cloning or executing repository code:
 gh pr view "<selected PR number>" --repo "<owner/repository>" --json number,title,body,url,state,isDraft,author,baseRefName,headRefName,headRefOid,additions,deletions,changedFiles,files
 ```
 
-Then fetch the diff:
+Then call the Atlas tool. Do not run `gh pr diff`. The tool loads each changed source file within a context window and returns one summary.
 
-```bash
-gh pr diff "<selected PR number>" --repo "<owner/repository>"
-```
+Call `mcp__atlas__atlas` with:
 
-Stop if the PR does not exist or access is denied.
+- `pullRequest`: the selected PR number
+- `format`: `summary`
 
-From this information, form an initial review plan:
+Stop if the tool is missing, the PR does not exist, or access is denied. If the tool is not connected, ask the user to register the Atlas MCP server and allow `mcp__atlas__atlas`.
+
+From the metadata and the tool summary, form an initial review plan:
 
 - Summarize the author's stated goal.
 - Identify changed files and affected subsystems.

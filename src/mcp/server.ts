@@ -25,7 +25,7 @@ server.registerTool(
 server.registerPrompt(
   "atlas",
   {
-    description: "List changed files in a pull request using the atlas tool.",
+    description: "Summarize changed files in a pull request using the atlas tool.",
     argsSchema: {
       pullRequest: z.coerce
         .number()
@@ -40,7 +40,7 @@ server.registerPrompt(
         role: "user" as const,
         content: {
           type: "text" as const,
-          text: `Call the atlas tool with pullRequest ${pullRequest} to list the files changed in that PR, then summarize the result.`,
+          text: `Call the atlas tool with pullRequest ${pullRequest}. Report the summary it returns.`,
         },
       },
     ],
